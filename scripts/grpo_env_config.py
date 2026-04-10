@@ -38,7 +38,7 @@ GRPO_CONFIG = {
         "rollouts_per_stage": 1280,
     },
     "2_4_b": {
-        "lr": 5e-5,
+        "lr": 4.9e-5,
         "distributed": "ddp",
         "gpu_count": 2,
         "batch_size": 1,
@@ -52,7 +52,7 @@ GRPO_CONFIG = {
         "mcts_warmup_optimizer_steps": 20,
     },
     "2_4_b_qwen": {
-        "lr": 1e-4,
+        "lr": 0.9e-4,
         "distributed": "ddp",
         "gpu_count": 2,
         "batch_size": 1,

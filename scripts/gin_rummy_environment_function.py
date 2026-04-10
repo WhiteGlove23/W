@@ -1045,8 +1045,8 @@ class CurriculumScheduler:
         hint_decay_optimizer_steps=100,
         warmup_rollouts=128,
         mcts_warmup_optimizer_steps=None,
-        initial_mcts_sims=5,
-        final_mcts_sims=25,
+        initial_mcts_sims=50,
+        final_mcts_sims=50,
     ):
         self.initial_max_turn = initial_max_turn
         self.final_max_turn = final_max_turn
@@ -1153,7 +1153,7 @@ def rollout_last_prompt_and_completion_parallelized_curriculum(
             try:
                 print(f"[INIT] Initializing env on server {idx}: {base_url}")
                 # Initialize with a test reset to ensure server is ready
-                payload = {"task_id": games_to_task_id_range[selected_game][0], "seed": 42, "opponent": "mcts", "mcts_max_simulations": 25, "mcts_num_rollouts": 1}
+                payload = {"task_id": games_to_task_id_range[selected_game][0], "seed": 42, "opponent": "mcts", "mcts_max_simulations": 50, "mcts_num_rollouts": 1}
                 res = requests.post(f"{base_url}/reset", json=payload, timeout=300)
                 res.raise_for_status()
                 env_pool.append({"base_url": base_url})
@@ -1190,8 +1190,8 @@ def rollout_last_prompt_and_completion_parallelized_curriculum(
             hint_decay_optimizer_steps=hint_decay_optimizer_steps,
             warmup_rollouts=rollout_warmup_rollouts,
             mcts_warmup_optimizer_steps=mcts_warmup_optimizer_steps,
-            initial_mcts_sims=25,
-            final_mcts_sims=25,
+            initial_mcts_sims=50,
+            final_mcts_sims=50,
         )
 
         print(
@@ -1200,7 +1200,7 @@ def rollout_last_prompt_and_completion_parallelized_curriculum(
             f"rollout_warmup_rollouts={rollout_warmup_rollouts}, "
             f"hint_decay_optimizer_steps={hint_decay_optimizer_steps}, "
             f"mcts_warmup_optimizer_steps={mcts_warmup_optimizer_steps}, "
-            f"mcts_sims=25->25 (constant)"
+            f"mcts_sims=50->50 (constant)"
         )
 
     # Retrieve static variables
@@ -1521,7 +1521,7 @@ def rollout_full_prompt_and_completion_parallelized_curriculum(
             try:
                 print(f"[INIT] Initializing env on server {idx}: {base_url}")
                 # Initialize with a test reset to ensure server is ready
-                payload = {"task_id": games_to_task_id_range[selected_game][0], "seed": 42, "opponent": "mcts", "mcts_max_simulations": 25, "mcts_num_rollouts": 1}
+                payload = {"task_id": games_to_task_id_range[selected_game][0], "seed": 42, "opponent": "mcts", "mcts_max_simulations": 50, "mcts_num_rollouts": 1}
                 res = requests.post(f"{base_url}/reset", json=payload, timeout=300)
                 res.raise_for_status()
                 env_pool.append({"base_url": base_url})
@@ -1558,8 +1558,8 @@ def rollout_full_prompt_and_completion_parallelized_curriculum(
             hint_decay_optimizer_steps=hint_decay_optimizer_steps,
             warmup_rollouts=rollout_warmup_rollouts,
             mcts_warmup_optimizer_steps=mcts_warmup_optimizer_steps,
-            initial_mcts_sims=25,
-            final_mcts_sims=25,
+            initial_mcts_sims=50,
+            final_mcts_sims=50,
         )
 
         print(
@@ -1568,7 +1568,7 @@ def rollout_full_prompt_and_completion_parallelized_curriculum(
             f"rollout_warmup_rollouts={rollout_warmup_rollouts}, "
             f"hint_decay_optimizer_steps={hint_decay_optimizer_steps}, "
             f"mcts_warmup_optimizer_steps={mcts_warmup_optimizer_steps}, "
-            f"mcts_sims=25->25 (constant)"
+            f"mcts_sims=50->50 (constant)"
         )
 
     # Retrieve static variables

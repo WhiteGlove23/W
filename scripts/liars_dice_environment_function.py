@@ -29,7 +29,7 @@ MAX_PROMPT_LEN = 16384 - 512
 
 MCTS_CONFIG = {
     "opponent": "mcts",
-    "mcts_max_simulations": 50,
+    "mcts_max_simulations": 225,
     "mcts_num_rollouts": 1,
 }
 
